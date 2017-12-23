@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// API routes
+Route::group(['middleware'=>'api','prefix'=>'api'],function(){
+	Route::post('auth/login','ApiController@login');
+
+	Route::group(['middleware'=>'jwt.auth'],function(){
+		Route::get('user','ApiController@getAuthUser');
+	});
+});

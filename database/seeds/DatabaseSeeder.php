@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 
 use App\Role;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,5 +29,14 @@ class DatabaseSeeder extends Seeder
         	"id"=>3,
         	"role"=>"technician"
         ]);
+
+    	User::create([
+    		"id"=>1,
+    		"role_id"=>2,
+    		"name"=>"zulham",
+    		"email"=>"asegaf@ymail.com",
+    		"password"=>bcrypt("zulhamganteng")
+    	]);
+
     }
 }
