@@ -20,6 +20,6 @@ Route::group(['middleware'=>'api','prefix'=>'api'],function(){
 	Route::post('auth/login','ApiController@login');
 
 	Route::group(['middleware'=>'jwt.auth'],function(){
-		Route::get('user','ApiController@getAuthUser');
+		Route::post('user','ApiController@getAuthUser');
 	});
 });
