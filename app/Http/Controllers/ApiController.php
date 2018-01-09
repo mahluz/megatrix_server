@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Response;
 use JWTAuth;
 use JWTAuthException;
 use App\User;
+use App\Service;
+use App\Problem;
 
 class ApiController extends Controller
 {
@@ -49,5 +51,19 @@ class ApiController extends Controller
     	return Response::json([
     		"result"=> $user
     	]);
+    }
+
+    public function getProblem(Request $request){
+        // $service = JWTAuth::toUser($request->token);
+        $data = Problem::get();
+
+        return Response::json([
+            "result"=>$data
+        ]);
+    }
+
+    public function request(Request $request){
+        // $service = JWTAuth::toUser($request->token);
+        return Response::json($request);
     }
 }
