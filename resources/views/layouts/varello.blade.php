@@ -58,13 +58,23 @@
                     </a>
                 </li>
                 <li class="sidebar-nav-link @yield('customer-active')">
-                    <a href="{{ url('main') }}">
-                        <span class="typcn typcn-group sidebar-nav-link-logo"></span> Customer
+                    <a href="{{ url('pelanggan') }}">
+                        <span class="typcn typcn-group sidebar-nav-link-logo"></span> Pelanggan
                     </a>
                 </li>
                 <li class="sidebar-nav-link @yield('technician-active')">
-                    <a href="{{ url('main') }}">
-                        <span class="typcn typcn-spanner sidebar-nav-link-logo"></span> Technician
+                    <a href="{{ url('teknisi') }}">
+                        <span class="typcn typcn-spanner sidebar-nav-link-logo"></span> Teknisi
+                    </a>
+                </li>
+                <li class="sidebar-nav-link ">
+                    <a href="{{ url('jasa') }}">
+                        <span class="typcn typcn-shopping-cart sidebar-nav-link-logo"></span> Jasa
+                    </a>
+                </li>
+                <li class="sidebar-nav-link ">
+                    <a href="{{ url('material') }}">
+                        <span class="typcn typcn-th-list-outline sidebar-nav-link-logo"></span> Material
                     </a>
                 </li>
                 <li class="sidebar-nav-heading">
@@ -72,7 +82,7 @@
                 </li>
                 <li class="sidebar-nav-link ">
                     <a href="{{ url('setting') }}">
-                        <span class="typcn typcn-th-small sidebar-nav-link-logo"></span> Setting
+                        <span class="typcn typcn-spanner sidebar-nav-link-logo"></span> Setting
                     </a>
                 </li>
             </ul>
@@ -215,6 +225,15 @@
 <script type="text/javascript" src="{{ url('public/js/dataTables/jquery.dataTables.js') }}"></script>
 <script type="text/javascript" src="{{ url('public/js/dataTables/dataTables.bootstrap.js') }}"></script>
 {{-- <script src="{{ url('public/js/pages/chart-js.js') }}"></script> --}}
+<script type="text/javascript">
+          
+  $(document).ready(function(){
+
+    $(".table").DataTable();
+
+  });
+
+</script>
 @yield('script')
 
 </body>

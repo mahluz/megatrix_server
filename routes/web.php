@@ -35,7 +35,38 @@ Route::get('checking',function(){
 // Standard Routes
 Route::group(['middleware'=>'web'],function(){
 	Route::group(['middleware'=>'userMiddleware:1'],function(){
+
 		Route::get('main','MainController@index');
+
+		Route::get('pelanggan','PelangganController@index');
+		Route::group(['prefix'=>'pelanggan'],function(){
+
+		});
+		// end teknisi group
+		Route::get('teknisi','TeknisiController@index');
+		Route::group(['prefix'=>'teknisi'],function(){
+
+		});
+		// end teknisi group
+
+		Route::get('setting','SettingController@index');
+		Route::group(['prefix'=>'setting'],function(){
+
+		});
+		// end setting group
+
+		Route::get('jasa','JasaController@index');
+		Route::group(['prefix'=>'jasa'],function(){
+
+		});
+		// end jasa group
+
+		Route::get('material','MaterialController@index');
+		Route::group(['prefix'=>'material'],function(){
+
+		});
+		// end material group
+
 	});
 });
 

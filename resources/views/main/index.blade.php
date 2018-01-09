@@ -17,6 +17,35 @@
 </header>
 
 <div class="container-fluid">
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>No</td>
+                        <td>keuangan</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>No</td>
+                        <td>Tanggal</td>
+                        <td>Pemasukan</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <input type="text" class="form-control" name="total" placeholder="total">
+    </div>
+
 	<div class="row">
 		<div class="panel">
 			<canvas id="myChart" width="400" height="400"></canvas>

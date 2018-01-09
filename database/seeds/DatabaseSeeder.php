@@ -48,6 +48,14 @@ class DatabaseSeeder extends Seeder
     		"password"=>bcrypt("zulhamganteng")
     	]);
 
+        User::create([
+            "id"=>3,
+            "role_id"=>3,
+            "name"=>'Kurniawan',
+            "email"=>'kurniawan@gmail.com',
+            "password"=>bcrypt("kurniawanganteng"),
+        ]);
+
         Problem::create([
             "id"=>1,
             "problem"=>"Pemasangan Listrik"
