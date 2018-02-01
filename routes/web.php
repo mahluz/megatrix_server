@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('admin/login');
 });
 
 // Route::get('test','StandardPagesController@dashboard');
@@ -89,3 +89,7 @@ Route::group(['middleware'=>'api','prefix'=>'api'],function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function(){
+   CRUD::resource('problem', 'ProblemCrudController');
+});
