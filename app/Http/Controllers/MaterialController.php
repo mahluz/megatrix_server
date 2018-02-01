@@ -10,4 +10,14 @@ class MaterialController extends Controller
 
     	return view('material.index');
     }
+
+    public function create(){
+
+    	return view('material.create');
+    }
+
+    public function edit(){
+
+    	return view('material.edit');
+    }
 }

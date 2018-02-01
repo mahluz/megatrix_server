@@ -10,4 +10,14 @@ class JasaController extends Controller
 
     	return view('jasa.index');
     }
+
+    public function create(){
+
+    	return view('jasa.create');
+    }
+
+    public function edit(){
+
+    	return view('jasa.edit');
+    }
 }

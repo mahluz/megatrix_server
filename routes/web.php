@@ -57,13 +57,19 @@ Route::group(['middleware'=>'web'],function(){
 
 		Route::get('jasa','JasaController@index');
 		Route::group(['prefix'=>'jasa'],function(){
-
+			Route::get('create','JasaController@create');
+			Route::post('store','JasaController@store');
+			Route::post('edit','JasaController@edit');
+			Route::post('update','JasaController@update');
 		});
 		// end jasa group
 
 		Route::get('material','MaterialController@index');
 		Route::group(['prefix'=>'material'],function(){
-
+			Route::get('create','MaterialController@create');
+			Route::post('store','MaterialController@store');
+			Route::post('edit','MaterialController@edit');
+			Route::post('update','MaterialController@update');
 		});
 		// end material group
 

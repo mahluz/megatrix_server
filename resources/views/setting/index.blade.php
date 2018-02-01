@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-                <h1 class="page-header-heading"><span class="typcn typcn-chart-line page-header-heading-icon"></span> Dashboard</h1>
+                <h1 class="page-header-heading"><span class="typcn typcn-chart-line page-header-heading-icon"></span> Setting</h1>
                 <p class="page-header-description">The wonderful Chart.js library provides you with great statistical chart views. You can view the full Chart.js documentation <a href="http://www.chartjs.org/docs" target="_blank">here</a>.
                 </p>
             </div>

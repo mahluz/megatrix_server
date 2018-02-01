@@ -58,22 +58,26 @@ class DatabaseSeeder extends Seeder
 
         Problem::create([
             "id"=>1,
-            "problem"=>"Pemasangan Listrik"
+            "problem"=>"Pemasangan Listrik",
+            "description"=>"something"
         ]);
 
         Problem::create([
             "id"=>2,
-            "problem"=>"Pemasangan lampu"
+            "problem"=>"Pemasangan lampu",
+            "description"=>"something"
         ]);
 
         Problem::create([
             "id"=>3,
-            "problem"=>"Pemasangan Air"
+            "problem"=>"Pemasangan Air",
+            "description"=>"something"
         ]);
 
         Problem::create([
             "id"=>4,
-            "problem"=>"Pemasangan Api"
+            "problem"=>"Pemasangan Api",
+            "description"=>"something"
         ]);
 
     }
