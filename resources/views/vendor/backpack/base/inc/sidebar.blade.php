@@ -13,10 +13,16 @@
           <!-- ==== Recommended place for admin menu items ==== -->
           <!-- ================================================ -->
           <li><a href="{{ backpack_url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
-
+          <li><a href="{{ backpack_url('problem') }}"><i class="fa fa-tag"></i> <span>Manage Problem</span></a></li>
+          <li><a href="{{ backpack_url('material') }}"><i class="fa fa-tag"></i> <span>Manage Material</span></a></li>
 
           <!-- ======================================= -->
-          {{-- <li class="header">Other menus</li> --}}
+          <li class="header">Settings</li>
+
+          <li><a href="{{ backpack_url('admin') }}"><i class="fa fa-tag"></i> <span>Manage Admin</span></a></li>
+          <li><a href="{{ backpack_url('technician') }}"><i class="fa fa-tag"></i> <span>Manage Technician</span></a></li>
+          <li><a href="{{ backpack_url('client') }}"><i class="fa fa-tag"></i> <span>Manage Client</span></a></li>
+
         </ul>
       </section>
       <!-- /.sidebar -->

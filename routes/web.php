@@ -86,10 +86,15 @@ Route::group(['middleware'=>'api','prefix'=>'api'],function(){
 		Route::post('request','ApiController@request');
 	});
 });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function(){
    CRUD::resource('problem', 'ProblemCrudController');
+   CRUD::resource('material' ,'MaterialCrudController');
+   CRUD::resource('admin', 'AdminCrudController');
+   CRUD::resource('technician', 'TechnicianCrudController');
+   CRUD::resource('client', 'ClientCrudController');
 });

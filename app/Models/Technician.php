@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Problem extends Model
+class Technician extends Model
 {
     use CrudTrait;
 
@@ -15,12 +15,12 @@ class Problem extends Model
     |--------------------------------------------------------------------------
     */
 
-    //protected $table = 'problems';
+    protected $table = 'users';
     //protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ["problem","description"];
-    // protected $hidden = [];
+    protected $fillable = ["role_id","name","email","password","status"];
+    protected $hidden = ["role_id"];
     // protected $dates = [];
 
     /*
