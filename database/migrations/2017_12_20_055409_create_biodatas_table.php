@@ -16,11 +16,13 @@ class CreateBiodatasTable extends Migration
         Schema::create('biodatas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('date_of_birth');
-            $table->string('home_address');
-            $table->string('last_education');
-            $table->string('profession');
-            $table->string('skill');
+            $table->string('gender')->default('-');
+            $talbe->string('cp')->default('-');
+            $table->string('date_of_birth')->default('-');
+            $table->string('home_address')->default('-');
+            $table->string('last_education')->default('-');
+            $table->string('profession')->default('-');
+            $table->string('skill')->default('-');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

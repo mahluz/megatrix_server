@@ -1,25 +1,25 @@
-@extends('layouts.varello')
+@extends('backpack::layout')
 @section('css')
 
 @endsection
 @section('dashboard-active','active')
+@section('header')
+    <section class="content-header">
+      <h1>
+        {{ trans('backpack::base.dashboard') }}<small>{{ trans('backpack::base.first_page_you_see') }}</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{{ backpack_url() }}">{{ config('backpack.base.project_name') }}</a></li>
+        <li class="active">{{ trans('backpack::base.dashboard') }}</li>
+      </ol>
+    </section>
+@endsection
 @section('content')
-<header class="page-header">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12">
-                <h1 class="page-header-heading"><span class="typcn typcn-chart-line page-header-heading-icon"></span> Dashboard</h1>
-                <p class="page-header-description">The wonderful Chart.js library provides you with great statistical chart views. You can view the full Chart.js documentation <a href="http://www.chartjs.org/docs" target="_blank">here</a>.
-                </p>
-            </div>
-        </div>
-    </div>
-</header>
 
 <div class="container-fluid">
     <div class="row">
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped dataTable">
                 <thead>
                     <tr>
                         <td>No</td>
@@ -29,21 +29,6 @@
                 </thead>
             </table>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <td>No</td>
-                        <td>Tanggal</td>
-                        <td>Pemasukan</td>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-        <input type="text" class="form-control" name="total" placeholder="total">
     </div>
 
 	<div class="row">
@@ -56,7 +41,7 @@
 
 @endsection
 @section('script')
-<script type="text/javascript" src="{{ url('public/js/Chart.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/Chart.js') }}"></script>
 <script type="text/javascript">
 var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {

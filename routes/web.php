@@ -94,15 +94,21 @@ Route::get('/home', function(){
 });
 
 Route::group(['middleware'=>'userMiddleware:1'],function(){
-	
-	Route::get('dashboard',function(){
-		return 'yey';
+
+	Route::group(['prefix' => 'admin',],function(){
+
+		Route::get('dashboard', 'MainController@index');
+		Route::get('order','OrderController@index');
+
+		Route::group(['namespace' => 'Admin'], function(){
+			
+			CRUD::resource('jasa', 'JasaCrudController');
+			CRUD::resource('material' ,'MaterialCrudController');
+			CRUD::resource('admin', 'AdminCrudController');
+			CRUD::resource('technician', 'TechnicianCrudController');
+			CRUD::resource('client', 'ClientCrudController');
+
+		});
 	});
-	Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
-		CRUD::resource('problem', 'ProblemCrudController');
-		CRUD::resource('material' ,'MaterialCrudController');
-		CRUD::resource('admin', 'AdminCrudController');
-		CRUD::resource('technician', 'TechnicianCrudController');
-		CRUD::resource('client', 'ClientCrudController');
-	});
+
 });

@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\ProblemRequest as StoreRequest;
-use App\Http\Requests\ProblemRequest as UpdateRequest;
+use App\Http\Requests\JasaRequest as StoreRequest;
+use App\Http\Requests\JasaRequest as UpdateRequest;
 
-class ProblemCrudController extends CrudController
+class JasaCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class ProblemCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Problem');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/problem');
-        $this->crud->setEntityNameStrings('problem', 'problems');
+        $this->crud->setModel('App\Models\Jasa');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/jasa');
+        $this->crud->setEntityNameStrings('jasa', 'jasas');
 
         /*
         |--------------------------------------------------------------------------

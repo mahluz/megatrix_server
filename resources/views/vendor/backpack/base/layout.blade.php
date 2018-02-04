@@ -30,6 +30,7 @@
     <!-- BackPack Base CSS -->
     <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}?v=2">
     <link rel="stylesheet" href="{{ asset('vendor/backpack/overlays/backpack.bold.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/dataTables/dataTables.bootstrap.css') }}">
 
     @yield('after_styles')
 
@@ -119,9 +120,18 @@
     <script src="{{ asset('vendor/adminlte') }}/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/plugins/fastclick/fastclick.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/dist/js/app.min.js"></script>
+    {{-- data tables --}}
+    <script type="text/javascript" src="{{ asset('js/dataTables/jquery.dataTables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/dataTables/dataTables.bootstrap.js') }}"></script>
 
     <!-- page script -->
     <script type="text/javascript">
+        // custom js
+        $(document).ready(function(){
+
+          $(".dataTable").DataTable();
+
+        });
         /* Store sidebar state */
         $('.sidebar-toggle').click(function(event) {
           event.preventDefault();
@@ -168,6 +178,8 @@
     @include('backpack::inc.alerts')
 
     @yield('after_scripts')
+
+    @yield('script')
 
     <!-- JavaScripts -->
     {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
