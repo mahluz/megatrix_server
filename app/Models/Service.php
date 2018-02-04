@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Jasa extends Model
+class Service extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class Jasa extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'problems';
+    //protected $table = 'services';
     //protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ["problem","description"];
+    protected $fillable = ["service","description"];
     // protected $hidden = [];
     // protected $dates = [];
 

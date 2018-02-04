@@ -14,7 +14,7 @@
           <!-- ================================================ -->
           <li><a href="{{ backpack_url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
           <li><a href="{{ backpack_url('order') }}"><i class="fa fa-tag"></i> <span>Order</span></a></li>
-          <li><a href="{{ backpack_url('jasa') }}"><i class="fa fa-tag"></i> <span>Manage Jasa</span></a></li>
+          <li><a href="{{ backpack_url('service') }}"><i class="fa fa-tag"></i> <span>Manage Service</span></a></li>
           <li><a href="{{ backpack_url('material') }}"><i class="fa fa-tag"></i> <span>Manage Material</span></a></li>
 
           <!-- ======================================= -->

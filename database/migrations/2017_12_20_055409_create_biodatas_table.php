@@ -17,7 +17,7 @@ class CreateBiodatasTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('gender')->default('-');
-            $talbe->string('cp')->default('-');
+            $table->string('cp')->default('-');
             $table->string('date_of_birth')->default('-');
             $table->string('home_address')->default('-');
             $table->string('last_education')->default('-');

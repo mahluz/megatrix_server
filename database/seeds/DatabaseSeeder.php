@@ -5,7 +5,6 @@ use Illuminate\Database\Seeder;
 use App\Role;
 use App\User;
 use App\Service;
-use App\Problem;
 
 class DatabaseSeeder extends Seeder
 {
@@ -56,27 +55,27 @@ class DatabaseSeeder extends Seeder
             "password"=>bcrypt("kurniawanganteng"),
         ]);
 
-        Problem::create([
+        Service::create([
             "id"=>1,
-            "problem"=>"Pemasangan Listrik",
+            "service"=>"Pemasangan Listrik",
             "description"=>"something"
         ]);
 
-        Problem::create([
+        Service::create([
             "id"=>2,
-            "problem"=>"Pemasangan lampu",
+            "service"=>"Pemasangan lampu",
             "description"=>"something"
         ]);
 
-        Problem::create([
+        Service::create([
             "id"=>3,
-            "problem"=>"Pemasangan Air",
+            "service"=>"Pemasangan Air",
             "description"=>"something"
         ]);
 
-        Problem::create([
+        Service::create([
             "id"=>4,
-            "problem"=>"Pemasangan Api",
+            "service"=>"Pemasangan Api",
             "description"=>"something"
         ]);
 

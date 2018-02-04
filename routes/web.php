@@ -101,8 +101,8 @@ Route::group(['middleware'=>'userMiddleware:1'],function(){
 		Route::get('order','OrderController@index');
 
 		Route::group(['namespace' => 'Admin'], function(){
-			
-			CRUD::resource('jasa', 'JasaCrudController');
+
+			CRUD::resource('service', 'ServiceCrudController');
 			CRUD::resource('material' ,'MaterialCrudController');
 			CRUD::resource('admin', 'AdminCrudController');
 			CRUD::resource('technician', 'TechnicianCrudController');
