@@ -19,62 +19,62 @@ Route::get('/', function () {
 
 // Route::get('test','TestController@index');
 
-Route::get('checking',function(){
+// Route::get('checking',function(){
 
-	switch(Auth::user()->role_id){
-		case '1':
-			return redirect('main');
-		break;
-		default:
-			return redirect('/');
-		break;
-	}
+// 	switch(Auth::user()->role_id){
+// 		case '1':
+// 			return redirect('main');
+// 		break;
+// 		default:
+// 			return redirect('/');
+// 		break;
+// 	}
 
-});
+// });
 
 // Standard Routes
-Route::group(['middleware'=>'web'],function(){
-	Route::group(['middleware'=>'userMiddleware:1'],function(){
+// Route::group(['middleware'=>'web'],function(){
+// 	Route::group(['middleware'=>'userMiddleware:1'],function(){
 
-		Route::get('main','MainController@index');
+// 		Route::get('main','MainController@index');
 
-		Route::get('pelanggan','PelangganController@index');
-		Route::group(['prefix'=>'pelanggan'],function(){
+// 		Route::get('pelanggan','PelangganController@index');
+// 		Route::group(['prefix'=>'pelanggan'],function(){
 
-		});
-		// end teknisi group
-		Route::get('teknisi','TeknisiController@index');
-		Route::group(['prefix'=>'teknisi'],function(){
+// 		});
+// 		// end teknisi group
+// 		Route::get('teknisi','TeknisiController@index');
+// 		Route::group(['prefix'=>'teknisi'],function(){
 
-		});
-		// end teknisi group
+// 		});
+// 		// end teknisi group
 
-		Route::get('setting','SettingController@index');
-		Route::group(['prefix'=>'setting'],function(){
+// 		Route::get('setting','SettingController@index');
+// 		Route::group(['prefix'=>'setting'],function(){
 
-		});
-		// end setting group
+// 		});
+// 		// end setting group
 
-		Route::get('jasa','JasaController@index');
-		Route::group(['prefix'=>'jasa'],function(){
-			Route::get('create','JasaController@create');
-			Route::post('store','JasaController@store');
-			Route::post('edit','JasaController@edit');
-			Route::post('update','JasaController@update');
-		});
-		// end jasa group
+// 		Route::get('jasa','JasaController@index');
+// 		Route::group(['prefix'=>'jasa'],function(){
+// 			Route::get('create','JasaController@create');
+// 			Route::post('store','JasaController@store');
+// 			Route::post('edit','JasaController@edit');
+// 			Route::post('update','JasaController@update');
+// 		});
+// 		// end jasa group
 
-		Route::get('material','MaterialController@index');
-		Route::group(['prefix'=>'material'],function(){
-			Route::get('create','MaterialController@create');
-			Route::post('store','MaterialController@store');
-			Route::post('edit','MaterialController@edit');
-			Route::post('update','MaterialController@update');
-		});
-		// end material group
+// 		Route::get('material','MaterialController@index');
+// 		Route::group(['prefix'=>'material'],function(){
+// 			Route::get('create','MaterialController@create');
+// 			Route::post('store','MaterialController@store');
+// 			Route::post('edit','MaterialController@edit');
+// 			Route::post('update','MaterialController@update');
+// 		});
+// 		// end material group
 
-	});
-});
+// 	});
+// });
 
 // API routes
 Route::group(['middleware'=>'api','prefix'=>'api'],function(){
@@ -89,12 +89,20 @@ Route::group(['middleware'=>'api','prefix'=>'api'],function(){
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', function(){
+	return redirect('admin/login');
+});
 
-Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function(){
-   CRUD::resource('problem', 'ProblemCrudController');
-   CRUD::resource('material' ,'MaterialCrudController');
-   CRUD::resource('admin', 'AdminCrudController');
-   CRUD::resource('technician', 'TechnicianCrudController');
-   CRUD::resource('client', 'ClientCrudController');
+Route::group(['middleware'=>'userMiddleware:1'],function(){
+	
+	Route::get('dashboard',function(){
+		return 'yey';
+	});
+	Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
+		CRUD::resource('problem', 'ProblemCrudController');
+		CRUD::resource('material' ,'MaterialCrudController');
+		CRUD::resource('admin', 'AdminCrudController');
+		CRUD::resource('technician', 'TechnicianCrudController');
+		CRUD::resource('client', 'ClientCrudController');
+	});
 });
