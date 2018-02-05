@@ -44,6 +44,13 @@ class AdminCrudController extends CrudController
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
+        $this->crud->addColumn([
+            "label"=>"gender",
+            "type"=>"select",
+            "entity"=>"biodata",
+            "attribute"=>"gender",
+            "model"=>"App\Models\Biodata"
+        ]);
         // $this->crud->addColumns(); // add multiple columns, at the end of the stack
         // $this->crud->removeColumn('column_name'); // remove a column from the stack
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
@@ -99,10 +106,12 @@ class AdminCrudController extends CrudController
         // });
         // $this->crud->addClause('withoutGlobalScopes');
         // $this->crud->addClause('withoutGlobalScope', VisibleScope::class);
-        // $this->crud->with(); // eager load relationships
+        // $this->crud->with(''); // eager load relationships
         // $this->crud->orderBy();
         // $this->crud->groupBy();
         // $this->crud->limit();
+
+        // dd($this->crud->with('biodata')->get());
     }
 
     public function store(StoreRequest $request)

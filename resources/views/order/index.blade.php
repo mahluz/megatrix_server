@@ -29,13 +29,14 @@
 							<td>Contact Person</td>
 							<td>Jasa</td>
 							<td>Material</td>
+							<td>Jasa yang diminta</td>
 							<td>Teknisi yang Menangani</td>
 							<td>Status</td>
 							<td>Action</td>
 	        			</tr>
 	        		</thead>
 	        		<tbody>
-	        			
+	        		
 	        		</tbody>
 	        	</table>
 	        </div>

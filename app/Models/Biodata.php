@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Admin extends Model
+class Biodata extends Model
 {
     use CrudTrait;
 
@@ -15,12 +15,12 @@ class Admin extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'users';
+    //protected $table = 'biodatas';
     //protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ["role_id","name","email","password","status"];
-    protected $hidden = ["role_id"];
+    // protected $fillable = [];
+    // protected $hidden = [];
     // protected $dates = [];
 
     /*
@@ -34,9 +34,7 @@ class Admin extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function biodata(){
-        return $this->hasOne('App\Models\Biodata','user_id');
-    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

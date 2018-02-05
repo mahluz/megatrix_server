@@ -19,18 +19,18 @@ Route::get('/', function () {
 
 // Route::get('test','TestController@index');
 
-// Route::get('checking',function(){
+Route::get('checking',function(){
 
-// 	switch(Auth::user()->role_id){
-// 		case '1':
-// 			return redirect('main');
-// 		break;
-// 		default:
-// 			return redirect('/');
-// 		break;
-// 	}
+	switch(Auth::user()->role_id){
+		case '1':
+			return redirect('admin/dashboard');
+		break;
+		default:
+			return redirect('/');
+		break;
+	}
 
-// });
+});
 
 // Standard Routes
 // Route::group(['middleware'=>'web'],function(){
@@ -90,7 +90,7 @@ Route::group(['middleware'=>'api','prefix'=>'api'],function(){
 Auth::routes();
 
 Route::get('/home', function(){
-	return redirect('admin/login');
+	return redirect('checking');
 });
 
 Route::group(['middleware'=>'userMiddleware:1'],function(){
