@@ -19,7 +19,7 @@ class Order extends Model
     //protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    // protected $fillable = [];
+    protected $fillable = ["service_id","client_id","technician_id","status"];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -44,6 +44,10 @@ class Order extends Model
 
     public function technician(){
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function order_materials(){
+        return $this->hasMany('App\Models\OrderMaterial');
     }
 
     /*

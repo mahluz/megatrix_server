@@ -18,7 +18,6 @@ class CreateOrdersTable extends Migration
             $table->integer('service_id')->unsigned();
             $table->integer('client_id')->unsigned();
             $table->integer('technician_id')->unsigned()->default(1);
-            $table->string('order');
             $table->string('status');
             $table->timestamps();
 

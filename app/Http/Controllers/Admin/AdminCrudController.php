@@ -7,6 +7,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\AdminRequest as StoreRequest;
 use App\Http\Requests\AdminRequest as UpdateRequest;
+use App\Models\Biodata;
 
 class AdminCrudController extends CrudController
 {
@@ -36,21 +37,14 @@ class AdminCrudController extends CrudController
             "name"=>"role_id",
             "type"=>"hidden",
             "value"=>1
-        ]);
+        ],'both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
         $this->crud->removeField('status', 'both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
-
+        
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
-        $this->crud->addColumn([
-            "label"=>"gender",
-            "type"=>"select",
-            "entity"=>"biodata",
-            "attribute"=>"gender",
-            "model"=>"App\Models\Biodata"
-        ]);
         // $this->crud->addColumns(); // add multiple columns, at the end of the stack
         // $this->crud->removeColumn('column_name'); // remove a column from the stack
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
@@ -107,6 +101,7 @@ class AdminCrudController extends CrudController
         // $this->crud->addClause('withoutGlobalScopes');
         // $this->crud->addClause('withoutGlobalScope', VisibleScope::class);
         // $this->crud->with(''); // eager load relationships
+        $this->crud->with('biodata');
         // $this->crud->orderBy();
         // $this->crud->groupBy();
         // $this->crud->limit();
@@ -120,6 +115,7 @@ class AdminCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+        // dd($this->crud->entry);
         return $redirect_location;
     }
 

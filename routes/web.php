@@ -99,12 +99,17 @@ Route::group(['middleware'=>'userMiddleware:1'],function(){
 
 		Route::get('dashboard', 'MainController@index');
 		Route::get('order','OrderController@index');
+		Route::group(['prefix'=>'order'],function(){
+			Route::post('getTechnician','OrderController@getTechnician');
+			Route::post('setTechnician','OrderController@setTechnician');
+		});
 
 		Route::group(['namespace' => 'Admin'], function(){
 
 			CRUD::resource('service', 'ServiceCrudController');
 			CRUD::resource('material' ,'MaterialCrudController');
 			CRUD::resource('admin', 'AdminCrudController');
+			CRUD::resource('biodataAdmin','BiodataAdminCrudController');
 			CRUD::resource('technician', 'TechnicianCrudController');
 			CRUD::resource('client', 'ClientCrudController');
 

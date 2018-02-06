@@ -19,6 +19,10 @@ class CreateBiodatasTable extends Migration
             $table->string('gender')->default('-');
             $table->string('cp')->default('-');
             $table->string('date_of_birth')->default('-');
+            $table->string('province')->default('-');
+            $table->string('regency')->default('-');
+            $table->string('district')->default('-');
+            $table->string('village')->default('-');
             $table->string('home_address')->default('-');
             $table->string('last_education')->default('-');
             $table->string('profession')->default('-');

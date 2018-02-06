@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Material extends Model
+class OrderMaterial extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class Material extends Model
     |--------------------------------------------------------------------------
     */
 
-    //protected $table = 'materials';
+    //protected $table = 'order_materials';
     //protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ["material","description"];
+    // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,7 +34,9 @@ class Material extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    
+    public function material(){
+        return $this->hasOne('App\Models\Material','id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

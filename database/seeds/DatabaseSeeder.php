@@ -2,9 +2,13 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Role;
-use App\User;
-use App\Service;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Service;
+use App\Models\Biodata;
+use App\Models\Material;
+use App\Models\Order;
+use App\Models\OrderMaterial;
 
 class DatabaseSeeder extends Seeder
 {
@@ -55,6 +59,51 @@ class DatabaseSeeder extends Seeder
             "password"=>bcrypt("kurniawanganteng"),
         ]);
 
+        Biodata::create([
+            "user_id"=>1,
+            "gender"=>"Laki-laki",
+            "cp"=>"089682169754",
+            "date_of_birth"=>"1995-12-12",
+            "province"=>"JAWA TENGAH",
+            "regency"=>"KABUPATEN SEMARANG",
+            "district"=>"GUNUNGPATI",
+            "village"=>"KALISEGORO",
+            "home_address"=>"Office Griya Sekar Gading Blok Q-9 Sekaran, Gunungpati Kota Semarang",
+            "last_education"=>"S1 UNNES",
+            "profession"=>"Founder and CTO Ardata",
+            "skill"=>"marketing and programming"
+        ]);
+
+        Biodata::create([
+            "user_id"=>2,
+            "gender"=>"Laki-laki",
+            "cp"=>"089682169754",
+            "date_of_birth"=>"1995-12-12",
+            "province"=>"JAWA TENGAH",
+            "regency"=>"KABUPATEN SEMARANG",
+            "district"=>"GUNUNGPATI",
+            "village"=>"KALISEGORO",
+            "home_address"=>"Office Griya Sekar Gading Blok Q-9 Sekaran, Gunungpati Kota Semarang",
+            "last_education"=>"S1 UNNES",
+            "profession"=>"Founder and CTO Ardata",
+            "skill"=>"marketing and programming"
+        ]);
+
+        Biodata::create([
+            "user_id"=>3,
+            "gender"=>"Laki-laki",
+            "cp"=>"089682169754",
+            "date_of_birth"=>"1995-12-12",
+            "province"=>"JAWA TENGAH",
+            "regency"=>"KABUPATEN SEMARANG",
+            "district"=>"GUNUNGPATI",
+            "village"=>"KALISEGORO",
+            "home_address"=>"Office Griya Sekar Gading Blok Q-9 Sekaran, Gunungpati Kota Semarang",
+            "last_education"=>"S1 UNNES",
+            "profession"=>"Founder and CTO Ardata",
+            "skill"=>"marketing and programming"
+        ]);
+
         Service::create([
             "id"=>1,
             "service"=>"Pemasangan Listrik",
@@ -77,6 +126,36 @@ class DatabaseSeeder extends Seeder
             "id"=>4,
             "service"=>"Pemasangan Api",
             "description"=>"something"
+        ]);
+
+        Material::create([
+            "material"=>"Lampu Neon",
+            "description"=>"something"
+        ]);
+
+        Material::create([
+            "material"=>"Lampu Zig Zag",
+            "description"=>"something"
+        ]);
+
+        Order::create([
+            "id"=>1,
+            "service_id"=>3,
+            "client_id"=>2,
+            "technician_id"=>1,
+            "status"=>"requested"
+        ]);
+
+        OrderMaterial::create([
+            "id"=>1,
+            "order_id"=>1,
+            "material_id"=>1
+        ]);
+
+        OrderMaterial::create([
+            "id"=>2,
+            "order_id"=>1,
+            "material_id"=>2
         ]);
 
     }

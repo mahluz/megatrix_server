@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}?v=2">
     <link rel="stylesheet" href="{{ asset('vendor/backpack/overlays/backpack.bold.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('js/dataTables/dataTables.bootstrap.css') }}">
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-tagsinput/bootstrap-tagsinput.css') }}">
     @yield('after_styles')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -114,6 +114,7 @@
     <!-- jQuery 2.2.3 -->
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
     <script>window.jQuery || document.write('<script src="{{ asset('vendor/adminlte') }}/plugins/jQuery/jQuery-2.2.3.min.js"><\/script>')</script>
+    <script type="text/javascript" src="{{ asset('angular/angular.min.js') }}"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="{{ asset('vendor/adminlte') }}/bootstrap/js/bootstrap.min.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/plugins/pace/pace.min.js"></script>
@@ -123,6 +124,8 @@
     {{-- data tables --}}
     <script type="text/javascript" src="{{ asset('js/dataTables/jquery.dataTables.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/dataTables/dataTables.bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bootstrap-tagsinput/bootstrap-tagsinput-angular.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
 
     <!-- page script -->
     <script type="text/javascript">
