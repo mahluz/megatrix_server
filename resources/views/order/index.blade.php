@@ -27,7 +27,7 @@
 							<td>jenis Kelamin</td>
 							<td>Provinsi</td>
 							<td>Kabupaten</td>
-							<td>Daerah</td>
+							<td>Kecamatan</td>
 							<td>Desa</td>
 							<td>Alamat</td>
 							<td>Contact Person</td>
@@ -61,11 +61,23 @@
 	        					" disabled>
 	        				</td>
 	        				<td>
-	        					<button type="button" class="btn btn-default" onclick="toggleModal('{{ $ini->id }}','{{ $ini->client->biodata->province }}','{{ $ini->client->biodata->regency }}','{{ $ini->client->biodata->district }}','{{ $ini->client->biodata->village }}')">Layani</button>
+	        					@if ($ini->technician_id == 1)
+	        						<button type="button" class="btn btn-primary" onclick="toggleModal('{{ $ini->id }}','{{ $ini->client->biodata->province }}','{{ $ini->client->biodata->regency }}','{{ $ini->client->biodata->district }}','{{ $ini->client->biodata->village }}')">Layani</button>
+	        					@else
+	        						<button type="button" class="btn btn-info" onclick="event.preventDefault();document.getElementById('detail{{ $ini->id }}').submit();">Lihat Teknisi</button>
+	        						<form method="post" action="{{ url('admin/order/technicianDetail') }}" id="detail{{ $ini->id }}">
+	        							<input type="hidden" name="technician_id" value="{{ $ini->technician_id }}">
+	        							{{ csrf_field() }}
+	        						</form>
+	        					@endif
 	        				</td>
 	        				<td>{{ $ini->status }}</td>
 	        				<td>
-	        					<button type="button" class="btn btn-warning">edit</button>
+	        					<button type="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('delete{{ $ini->id }}').submit();">Tolak</button>
+	        					<form method="post" id="delete{{ $ini->id }}" action="{{ url('admin/order/delete') }}">
+	        						<input type="hidden" name="id" value="{{ $ini->id }}">
+	        						{{ csrf_field() }}
+	        					</form>
 	        				</td>
 	        			</tr>
 	        		@endforeach
@@ -87,7 +99,7 @@
 	      			
 	      		</div>
 	      	</div>
-	      	<input type="hidden" name="client_id" id="client_id" value="">
+	      	<input type="hidden" name="order_id" id="order_id" value="">
 	      	{{ csrf_field() }}
 	      	<button type="submit" class="btn btn-default btn-block">Submit</button>
 	      </form>
@@ -126,7 +138,7 @@
 			$.each(result,function(key,i){
 				$("#technician-list").append("<option value='"+this.id+"'>"+this.name+"</option>");
 			});
-			$("#client_id").val(order.order_id);
+			$("#order_id").val(order.order_id);
 
 		}).fail(function(error){
 			// console.log(error);

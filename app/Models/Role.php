@@ -34,7 +34,9 @@ class Role extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function user(){
+        return $this->hasMany('App\Models\User');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

@@ -19,8 +19,8 @@ class Biodata extends Model
     //protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    // protected $fillable = [];
-    // protected $hidden = [];
+    protected $fillable = ["user_id","gender","cp","date_of_birth","province","regency","district","village","home_address","last_education","profession","skill"];
+    protected $hidden = ["user_id"];
     // protected $dates = [];
 
     /*
@@ -37,6 +37,7 @@ class Biodata extends Model
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

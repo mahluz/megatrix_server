@@ -22,14 +22,20 @@ class OrderController extends Controller
     	return view('order.index',$data);
     }
 
+    public function delete(Request $request){
+        $db = Order::where('id',$request["id"])->delete();
+
+        return redirect('admin/order');
+    }
+
     public function getTechnician(Request $request){
         // global $request;
         $data = User::join('biodatas','users.id','=','biodatas.user_id')
         ->where('role_id',3)
+        ->where('status','free')
         ->where('province',$request["province"])
         ->where('regency',$request["regency"])
         ->where('district',$request["district"])
-        ->where('village',$request["village"])
         ->get();
 
         return Response::json($data);
@@ -43,6 +49,17 @@ class OrderController extends Controller
             "status"=>"on process"
         ]); 
 
+        $db["technician"] = User::where('id',$request["technician_id"])
+        ->update([
+            "status"=>"on work"
+        ]);
+
         return redirect('admin/order');
+    }
+
+    public function technicianDetail(Request $request){
+        $data["technician"] = User::with('biodata')->where('id',$request["technician_id"])->first();
+        // dd($data);
+        return view('order.technicianDetail',$data);
     }
 }

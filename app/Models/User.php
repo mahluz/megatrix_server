@@ -37,6 +37,10 @@ class User extends Model
     public function biodata(){
         return $this->hasOne('App\Models\Biodata');
     }
+
+    public function role(){
+        return $this->belongsTo('App\Models\Role');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

@@ -108,6 +108,9 @@ class TechnicianCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+        Biodata::create([
+            "user_id"=>$this->crud->entry->id
+        ]);
         return $redirect_location;
     }
 

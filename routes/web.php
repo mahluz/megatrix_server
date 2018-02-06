@@ -100,8 +100,10 @@ Route::group(['middleware'=>'userMiddleware:1'],function(){
 		Route::get('dashboard', 'MainController@index');
 		Route::get('order','OrderController@index');
 		Route::group(['prefix'=>'order'],function(){
+			Route::post('delete','OrderController@delete');
 			Route::post('getTechnician','OrderController@getTechnician');
 			Route::post('setTechnician','OrderController@setTechnician');
+			Route::post('technicianDetail','OrderController@technicianDetail');
 		});
 
 		Route::group(['namespace' => 'Admin'], function(){
@@ -109,9 +111,10 @@ Route::group(['middleware'=>'userMiddleware:1'],function(){
 			CRUD::resource('service', 'ServiceCrudController');
 			CRUD::resource('material' ,'MaterialCrudController');
 			CRUD::resource('admin', 'AdminCrudController');
-			CRUD::resource('biodataAdmin','BiodataAdminCrudController');
+			// CRUD::resource('biodataAdmin','BiodataAdminCrudController');
 			CRUD::resource('technician', 'TechnicianCrudController');
 			CRUD::resource('client', 'ClientCrudController');
+			CRUD::resource('biodata','BiodataCrudController');
 
 		});
 	});

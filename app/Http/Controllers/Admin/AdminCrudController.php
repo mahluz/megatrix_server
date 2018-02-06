@@ -112,10 +112,16 @@ class AdminCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
+        if (!empty($request->password)) {
+            $request->offsetSet('password', bcrypt($request->password));
+        }
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         // dd($this->crud->entry);
+        Biodata::create([
+            "user_id"=>$this->crud->entry->id
+        ]);
         return $redirect_location;
     }
 

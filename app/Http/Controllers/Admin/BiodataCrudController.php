@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\ClientRequest as StoreRequest;
-use App\Http\Requests\ClientRequest as UpdateRequest;
+use App\Http\Requests\BiodataRequest as StoreRequest;
+use App\Http\Requests\BiodataRequest as UpdateRequest;
 
-class ClientCrudController extends CrudController
+class BiodataCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class ClientCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Client');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/client');
-        $this->crud->setEntityNameStrings('client', 'clients');
+        $this->crud->setModel('App\Models\Biodata');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/biodata');
+        $this->crud->setEntityNameStrings('biodata', 'biodatas');
 
         /*
         |--------------------------------------------------------------------------
@@ -30,6 +30,38 @@ class ClientCrudController extends CrudController
 
         $this->crud->setFromDb();
 
+        $this->crud->addColumn([
+            "label"=>"name",
+            "type"=>"select",
+            "name"=>"name",
+            "entity"=>"user",
+            "attribute"=>"name",
+            "model"=>"App\Models\User"
+        ],'both');
+
+        $this->crud->addColumn([
+            "label"=>"email",
+            "type"=>"select",
+            "name"=>"email",
+            "entity"=>"user",
+            "attribute"=>"email",
+            "model"=>"App\Models\User"
+        ],'both');
+
+        $this->crud->addColumn([
+            "label"=>"role",
+            "type"=>"select",
+            "name"=>"role",
+            "entity"=>"user.role",
+            "attribute"=>"role",
+            "model"=>"App\Models\Role"
+        ],'both');
+
+        $this->crud->removeField("user_id","both");
+
+        $data=$this->crud->with('user')->with('user.role')->get();
+
+        // dd($this->crud->with('role')->get());
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
@@ -49,7 +81,8 @@ class ClientCrudController extends CrudController
         // $this->crud->addButton($stack, $name, $type, $content, $position); // add a button; possible types are: view, model_function
         // $this->crud->addButtonFromModelFunction($stack, $name, $model_function_name, $position); // add a button whose HTML is returned by a method in the CRUD model
         // $this->crud->addButtonFromView($stack, $name, $view, $position); // add a button whose HTML is in a view placed at resources\views\vendor\backpack\crud\buttons
-        // $this->crud->removeButton($name);
+        $this->crud->removeButton('create');
+        $this->crud->removeButton('delete');
         // $this->crud->removeButtonFromStack($name, $stack);
         // $this->crud->removeAllButtons();
         // $this->crud->removeAllButtonsFromStack('line');
@@ -86,7 +119,7 @@ class ClientCrudController extends CrudController
         // ------ ADVANCED QUERIES
         // $this->crud->addClause('active');
         // $this->crud->addClause('type', 'car');
-        $this->crud->addClause('where', 'role_id', '=', 2);
+        // $this->crud->addClause('where', 'name', '==', 'car');
         // $this->crud->addClause('whereName', 'car');
         // $this->crud->addClause('whereHas', 'posts', function($query) {
         //     $query->activePosts();
@@ -102,15 +135,9 @@ class ClientCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-        if (!empty($request->password)) {
-            $request->offsetSet('password', bcrypt($request->password));
-        }
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-        Biodata::create([
-            "user_id"=>$this->crud->entry->id
-        ]);
         return $redirect_location;
     }
 
