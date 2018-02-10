@@ -7,9 +7,8 @@ use Illuminate\Support\Facades\Response;
 
 use JWTAuth;
 use JWTAuthException;
-use App\User;
-use App\Service;
-use App\Problem;
+use App\Models\User;
+use App\Models\Service;
 
 class ApiController extends Controller
 {
