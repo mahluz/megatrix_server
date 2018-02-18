@@ -52,9 +52,9 @@ class ApiController extends Controller
     	]);
     }
 
-    public function getProblem(Request $request){
+    public function getService(Request $request){
         // $service = JWTAuth::toUser($request->token);
-        $data = Problem::get();
+        $data = Service::get();
 
         return Response::json([
             "result"=>$data

@@ -82,7 +82,7 @@ Route::group(['middleware'=>'api','prefix'=>'api'],function(){
 
 	Route::group(['middleware'=>'jwt.auth'],function(){
 		Route::post('user','ApiController@getAuthUser');
-		Route::post('problem','ApiController@getProblem');
+		Route::post('getService','ApiController@getService');
 		Route::post('request','ApiController@request');
 	});
 });
