@@ -9,6 +9,10 @@ use JWTAuth;
 use JWTAuthException;
 use App\Models\User;
 use App\Models\Service;
+use App\Models\Province;
+use App\Models\Regency;
+use App\Models\District;
+use App\Models\Village;
 
 class ApiController extends Controller
 {
@@ -65,4 +69,29 @@ class ApiController extends Controller
         // $service = JWTAuth::toUser($request->token);
         return Response::json($request);
     }
+
+    public function getProvince(Request $request){
+        $data = Province::get();
+
+        return Response::json([
+            "result"=>$data
+        ]);
+    }
+
+    public function getRegency(Request $request){
+        $data = Regency::get();
+
+        return Response::json([
+            "result"=>$data
+        ]);
+    }
+
+    public function getDistrict(Request $request){
+        $data = District::get();
+
+        return Response::json([
+            "result"=>$data
+        ]);
+    }
+
 }

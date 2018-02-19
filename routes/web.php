@@ -84,6 +84,9 @@ Route::group(['middleware'=>'api','prefix'=>'api'],function(){
 		Route::post('user','ApiController@getAuthUser');
 		Route::post('getService','ApiController@getService');
 		Route::post('request','ApiController@request');
+		Route::post('getProvince','ApiController@getProvince');
+		Route::post('getRegency','ApiController@getRegency');
+		Route::post('getDistrict','ApiController@getDistrict');
 	});
 });
 
