@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class regency extends Model
+class Regency extends Model
 {
     use CrudTrait;
 
@@ -34,7 +34,9 @@ class regency extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function districts(){
+        return $this->hasMany('App\Models\District');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

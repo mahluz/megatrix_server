@@ -79,15 +79,15 @@ class ApiController extends Controller
     }
 
     public function getRegency(Request $request){
-        $data = Regency::get();
+        $data = Province::with('regencies')->where('name',$request["province"])->first();
 
         return Response::json([
-            "result"=>$data
+            "result"=>$data["regencies"]
         ]);
     }
 
     public function getDistrict(Request $request){
-        $data = District::get();
+        $data = Regency::with('districts')->where('name',$request["regency"])->first();
 
         return Response::json([
             "result"=>$data
