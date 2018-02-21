@@ -87,6 +87,7 @@ Route::group(['middleware'=>'api','prefix'=>'api'],function(){
 		Route::post('getProvince','ApiController@getProvince');
 		Route::post('getRegency','ApiController@getRegency');
 		Route::post('getDistrict','ApiController@getDistrict');
+		Route::post('onOrder','ApiController@onOrder');
 	});
 });
 

@@ -90,7 +90,14 @@ class ApiController extends Controller
         $data = Regency::with('districts')->where('name',$request["regency"])->first();
 
         return Response::json([
-            "result"=>$data
+            "result"=>$data["districts"]
+        ]);
+    }
+
+    public function onOrder(Request $request){
+
+        return Response::json([
+            "result"=>"yey"
         ]);
     }
 

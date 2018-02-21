@@ -18,6 +18,9 @@ class CreateOrdersTable extends Migration
             $table->integer('service_id')->unsigned();
             $table->integer('client_id')->unsigned();
             $table->integer('technician_id')->unsigned()->default(1);
+            $table->string('address')->default('-');
+            $table->string('latitude')->default(0);
+            $table->string('longitude')->default(0);
             $table->string('status');
             $table->timestamps();
 
