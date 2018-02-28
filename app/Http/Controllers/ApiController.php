@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Response;
 use JWTAuth;
 use JWTAuthException;
 use App\Models\User;
+use App\Models\Biodata;
+use App\Models\Order;
 use App\Models\Service;
 use App\Models\Province;
 use App\Models\Regency;
@@ -94,10 +96,55 @@ class ApiController extends Controller
         ]);
     }
 
-    public function onOrder(Request $request){
+    public function getVillage(Request $request){
+        $data = District::with('villages')->where('name',$request["district"])->first();
 
         return Response::json([
-            "result"=>"yey"
+            "result"=>$data["villages"]
+        ]);
+    }
+
+    public function onOrder(Request $request){
+        $data["user"] = Biodata::where('user_id',$request["user"]["id"])->update([
+            "province"=>$request["order"]["province"],
+            "regency"=>$request["order"]["regency"],
+            "district"=>$request["order"]["district"],
+            "village"=>$request["order"]["village"],
+            "home_address"=>$request["order"]["address"]
+        ]);
+        $data["order"] = Order::create([
+            "service_id"=>$request["order"]["service"],
+            "client_id"=>$request["user"]["id"]
+        ]);
+        return Response::json([
+            "result"=>$data
+        ]);
+    }
+
+    public function getOrder(Request $request){
+        $data["order"] = Order::with('service')
+        ->with('technician')
+        ->with('order_materials','order_materials.material')
+        ->where('client_id',$request["user"]["id"])->get();
+        return Response::json([
+            "items"=>$data["order"]
+        ]);
+    }
+
+    public function completeOrder(Request $request){
+        return Response::json([
+            "result"=>$request
+        ]);
+    }
+
+    public function getNearOrder(Request $request){
+        $currentUser = User::with('biodata')->where('id',$request["user"]["id"])->first();
+        $data["order"] = Order::with('client','client.biodata')
+        ->whereHas('client.biodata',function($query) use ($currentUser){
+            $query->where('district',$currentUser["biodata"]["district"]);
+        })->get();
+        return Response::json([
+            "result"=>$data["order"]
         ]);
     }
 

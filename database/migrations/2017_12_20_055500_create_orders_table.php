@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('address')->default('-');
             $table->string('latitude')->default(0);
             $table->string('longitude')->default(0);
-            $table->string('status');
+            $table->string('status')->default("requested");
             $table->timestamps();
 
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade')->onUpdate('cascade');

@@ -50,7 +50,7 @@
 	        				<td>{{ $ini->client->biodata->regency }}</td>
 	        				<td>{{ $ini->client->biodata->district }}</td>
 	        				<td>{{ $ini->client->biodata->village }}</td>
-	        				<td>{{ $ini->address }}</td>
+	        				<td>{{ $ini->client->biodata->home_address }}</td>
 	        				<td>{{ $ini->client->biodata->cp }}</td>
 	        				<td>{{ $ini->service->service }}</td>
 	        				<td>
