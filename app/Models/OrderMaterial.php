@@ -18,7 +18,7 @@ class OrderMaterial extends Model
     //protected $table = 'order_materials';
     //protected $primaryKey = 'id';
     // public $timestamps = false;
-    // protected $guarded = ['id'];
+    protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
@@ -35,7 +35,7 @@ class OrderMaterial extends Model
     |--------------------------------------------------------------------------
     */
     public function material(){
-        return $this->hasOne('App\Models\Material','id');
+        return $this->belongsTo('App\Models\Material','material_id');
     }
     /*
     |--------------------------------------------------------------------------

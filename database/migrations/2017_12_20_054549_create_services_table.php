@@ -17,6 +17,7 @@ class CreateServicesTable extends Migration
             $table->increments('id');
             $table->string('service');
             $table->string('description');
+            $table->string('price');
             $table->timestamps();
         });
     }

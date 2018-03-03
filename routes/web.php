@@ -78,20 +78,29 @@ Route::get('checking',function(){
 
 // API routes
 Route::group(['middleware'=>'api','prefix'=>'api'],function(){
+
 	Route::post('auth/login','ApiController@login');
+	Route::post('getProvince','ApiController@getProvince');
+	Route::post('getRegency','ApiController@getRegency');
+	Route::post('getDistrict','ApiController@getDistrict');
+	Route::post('getVillage','ApiController@getVillage');
+	Route::post('registerClient','ApiController@registerClient');
+	Route::post('registerTechnician','ApiController@registerTechnician');
 
 	Route::group(['middleware'=>'jwt.auth'],function(){
 		Route::post('user','ApiController@getAuthUser');
 		Route::post('getService','ApiController@getService');
 		Route::post('request','ApiController@request');
-		Route::post('getProvince','ApiController@getProvince');
-		Route::post('getRegency','ApiController@getRegency');
-		Route::post('getDistrict','ApiController@getDistrict');
-		Route::post('getVillage','ApiController@getVillage');
 		Route::post('onOrder','ApiController@onOrder');
 		Route::post('getOrder','ApiController@getOrder');
 		Route::post('completeOrder','ApiController@completeOrder');
 		Route::post('getNearOrder','ApiController@getNearOrder');
+		Route::post('setTechnician','ApiController@setTechnician');
+		Route::post('getOrderMaterial','ApiController@getOrderMaterial');
+		Route::post('addMaterial','ApiController@addMaterial');
+		Route::post('getMaterial','ApiController@getMaterial');
+		Route::post('removeOrderMaterial','ApiController@removeOrderMaterial');
+		Route::post('cancelOrder','ApiController@cancelOrder');
 	});
 });
 
@@ -106,6 +115,9 @@ Route::group(['middleware'=>'userMiddleware:1'],function(){
 	Route::group(['prefix' => 'admin',],function(){
 
 		Route::get('dashboard', 'MainController@index');
+		Route::group(['prefix'=>'dashboard'],function(){
+			Route::post('getData','MainController@getData');
+		});
 		Route::get('order','OrderController@index');
 		Route::group(['prefix'=>'order'],function(){
 			Route::post('delete','OrderController@delete');

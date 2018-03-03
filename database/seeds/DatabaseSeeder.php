@@ -107,35 +107,41 @@ class DatabaseSeeder extends Seeder
         Service::create([
             "id"=>1,
             "service"=>"Pemasangan Listrik",
-            "description"=>"something"
+            "description"=>"something",
+            "price"=>"2000"
         ]);
 
         Service::create([
             "id"=>2,
             "service"=>"Pemasangan lampu",
-            "description"=>"something"
+            "description"=>"something",
+            "price"=>"2000"
         ]);
 
         Service::create([
             "id"=>3,
             "service"=>"Pemasangan Air",
-            "description"=>"something"
+            "description"=>"something",
+            "price"=>"2000"
         ]);
 
         Service::create([
             "id"=>4,
             "service"=>"Pemasangan Api",
-            "description"=>"something"
+            "description"=>"something",
+            "price"=>"2000"
         ]);
 
         Material::create([
             "material"=>"Lampu Neon",
-            "description"=>"something"
+            "description"=>"something",
+            "price"=>"2000"
         ]);
 
         Material::create([
             "material"=>"Lampu Zig Zag",
-            "description"=>"something"
+            "description"=>"something",
+            "price"=>"2000"
         ]);
 
         Order::create([

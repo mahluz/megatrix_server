@@ -10,6 +10,8 @@ use JWTAuthException;
 use App\Models\User;
 use App\Models\Biodata;
 use App\Models\Order;
+use App\Models\OrderMaterial;
+use App\Models\Material;
 use App\Models\Service;
 use App\Models\Province;
 use App\Models\Regency;
@@ -125,26 +127,200 @@ class ApiController extends Controller
         $data["order"] = Order::with('service')
         ->with('technician')
         ->with('order_materials','order_materials.material')
-        ->where('client_id',$request["user"]["id"])->get();
+        ->where('client_id',$request["user"]["id"])
+        ->where('status','requested')
+        ->orWhere('status','on process')
+        ->get();
         return Response::json([
             "items"=>$data["order"]
         ]);
     }
 
     public function completeOrder(Request $request){
-        return Response::json([
-            "result"=>$request
-        ]);
+        $db["order_status"] = Order::where('id',$request["order"])->first();
+
+        if($db["order_status"]->status == "on process"){
+            $db["technician"] = User::where('id',$db["order_status"]->technician_id)
+                                ->update([
+                                    "status"=>"free"
+                                ]);
+            $db["client"] = User::where('id',$db["order_status"]->client_id)
+                                ->update([
+                                    "status"=>"free"
+                                ]);
+            $db["order"] = Order::where('id',$request["order"])
+                        ->update([
+                            "status"=>"complete"
+                        ]);
+            return Response::json([
+                "result"=>$db
+            ]);
+        } else {
+            return Response::json([
+                "result"=>"gagal"
+            ]);
+        }
+
     }
 
     public function getNearOrder(Request $request){
-        $currentUser = User::with('biodata')->where('id',$request["user"]["id"])->first();
+
+        $currentUser = User::with('biodata')
+        ->with('order','order.client')
+        ->where('id',$request["user"]["id"])->first();
+
         $data["order"] = Order::with('client','client.biodata')
         ->whereHas('client.biodata',function($query) use ($currentUser){
             $query->where('district',$currentUser["biodata"]["district"]);
-        })->get();
+        })
+        ->where('status','requested')
+        ->orWhere('status','on process')
+        ->get();
+
         return Response::json([
-            "result"=>$data["order"]
+            "technician"=>$currentUser,
+            "headerImage"=>"assets/images/background/14.jpg",
+            "toolBarTitle"=>"Parallax-title",
+            "title"=> "My Status ".$currentUser["status"],
+            "iconLike"=>"icon-thumb-up",
+            "iconFavorite"=>"icon-heart",
+            "iconShare"=>"icon-share-variant",
+            "items"=>$data["order"]
+        ]);
+    }
+
+    public function setTechnician(Request $request){
+
+        $db["status"] = User::where('id',$request["user"]["id"])->first();
+
+        if($db["status"]["status"] == "free"){
+            $db["order"] = Order::where('id',$request["order"])
+            ->update([
+                "technician_id"=>$request["user"]["id"],
+                "status"=>"on process"
+            ]); 
+
+            $db["technician"] = User::where('id',$request["user"]["id"])
+            ->update([
+                "status"=>"on work"
+            ]);
+
+            return Response::json([
+                "result"=>$db
+            ]);
+        } else {
+            return Response::json([
+                "result"=>"error"
+            ]);
+        }
+
+    }
+
+    public function getOrderMaterial(Request $request){
+        $db["order_materials"] = OrderMaterial::with('material')
+                                ->where('order_id',$request["order"]["id"])->get();
+
+        return Response::json($db["order_materials"]);
+    }
+
+    public function addMaterial(Request $request){
+        $db["order_material"] = OrderMaterial::create([
+            "order_id"=>$request["order"]["id"],
+            "material_id"=>$request["material"]
+        ]);
+
+        return Response::json([
+            "result"=>$db["order_material"]
+        ]);
+    }
+
+    public function getMaterial(Request $request){
+        $db["material"] = Material::get();
+
+        return Response::json([
+            "result"=>$db["material"]
+        ]);
+    }
+
+    public function removeOrderMaterial(Request $request){
+        $db["order_material"] = OrderMaterial::where('id',$request["orderMaterial"])->delete();
+
+        return Response::json([
+            "result"=>$db["order_material"]
+        ]);
+    }
+
+    public function cancelOrder(Request $request){
+
+        $db["order"] = Order::where('id',$request["order"])->first();
+
+        if($db["order"]->status == "requested"){
+            $db["cancelOrder"] = Order::where('id',$request["order"])->delete();
+            return Response::json([
+                "result"=>$request["order"]
+            ]);
+        } else {
+            return Response::json([
+                "result"=>"gagal"
+            ]);
+        }
+    }
+
+    public function registerClient(Request $request){
+
+        $db["client"] = User::create([
+            "role_id"=>2,
+            "name"=>$request["credential"]["name"],
+            "email"=>$request["credential"]["email"],
+            "password"=>bcrypt($request["credential"]["password"])
+        ]);
+
+        $db["client_biodata"] = Biodata::create([
+            "user_id"=>$db["client"]->id,
+            "gender"=>$request["credential"]["gender"],
+            "cp"=>$request["credential"]["cp"],
+            "date_of_birth"=>$request["credential"]["date_of_birth"],
+            "province"=>$request["credential"]["province"],
+            "regency"=>$request["credential"]["regency"],
+            "district"=>$request["credential"]["district"],
+            "village"=>$request["credential"]["village"],
+            "home_address"=>$request["credential"]["home_address"],
+            "last_education"=>$request["credential"]["last_education"],
+            "profession"=>$request["credential"]["profession"],
+            "skill"=>$request["credential"]["skill"]
+        ]);
+
+        return Response::json([
+            "result"=>$db
+        ]);
+    }
+
+    public function registerTechnician(Request $request){
+
+        $db["client"] = User::create([
+            "role_id"=>3,
+            "name"=>$request["credential"]["name"],
+            "email"=>$request["credential"]["email"],
+            "password"=>bcrypt($request["credential"]["password"])
+        ]);
+
+        $db["client_biodata"] = Biodata::create([
+            "user_id"=>$db["client"]->id,
+            "gender"=>$request["credential"]["gender"],
+            "cp"=>$request["credential"]["cp"],
+            "date_of_birth"=>$request["credential"]["date_of_birth"],
+            "province"=>$request["credential"]["province"],
+            "regency"=>$request["credential"]["regency"],
+            "district"=>$request["credential"]["district"],
+            "village"=>$request["credential"]["village"],
+            "home_address"=>$request["credential"]["home_address"],
+            "last_education"=>$request["credential"]["last_education"],
+            "profession"=>$request["credential"]["profession"],
+            "skill"=>$request["credential"]["skill"]
+        ]);
+
+        return Response::json([
+            "result"=>$db
         ]);
     }
 

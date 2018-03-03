@@ -56,6 +56,10 @@ class User extends Model implements JWTSubject
     public function role(){
         return $this->belongsTo('App\Models\Role');
     }
+
+    public function order(){
+        return $this->hasOne('App\Models\Order',"technician_id");
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

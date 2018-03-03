@@ -18,8 +18,8 @@ class Material extends Model
     //protected $table = 'materials';
     //protected $primaryKey = 'id';
     // public $timestamps = false;
-    // protected $guarded = ['id'];
-    protected $fillable = ["material","description"];
+    protected $guarded = ['id'];
+    // protected $fillable = ["material","description"];
     // protected $hidden = [];
     // protected $dates = [];
 
