@@ -324,4 +324,21 @@ class ApiController extends Controller
         ]);
     }
 
+    public function getCurrentJobTechnician(Request $request){
+        $db["technician"] = User::where('id',$request["technician"]["id"])->first();
+
+        if($db["technician"]->status == "on work"){
+            $db["order"] = Order::where('technician_id',$db["technician"]->id)
+                                    ->where('status','on process')
+                                    ->first();
+            return Response::json([
+                "result"=>$db
+            ]);
+        } else {
+            return Response::json([
+                "result"=>"gagal"
+            ]);
+        }
+    }
+
 }

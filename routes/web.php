@@ -101,6 +101,7 @@ Route::group(['middleware'=>'api','prefix'=>'api'],function(){
 		Route::post('getMaterial','ApiController@getMaterial');
 		Route::post('removeOrderMaterial','ApiController@removeOrderMaterial');
 		Route::post('cancelOrder','ApiController@cancelOrder');
+		Route::post('getCurrentJobTechnician','ApiController@getCurrentJobTechnician');
 	});
 });
 
