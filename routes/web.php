@@ -127,15 +127,39 @@ Route::group(['middleware'=>'userMiddleware:1'],function(){
 			Route::post('technicianDetail','OrderController@technicianDetail');
 		});
 
+		Route::get('admin','AdminController@index');
+		Route::group(['prefix'=>"admin"],function(){
+			Route::get('create','AdminController@create');
+			Route::post('store','AdminController@store');
+			Route::post('delete','AdminController@delete');
+			Route::post('biodata','AdminController@biodata');
+		});
+
+		Route::get('technician','TechnicianController@index');
+		Route::group(['prefix'=>"technician"],function(){
+			Route::get('create','TechnicianController@create');
+			Route::post('store','TechnicianController@store');
+			Route::post('delete','TechnicianController@delete');
+			Route::post('biodata','TechnicianController@biodata');
+		});
+
+		Route::get('client','ClientController@index');
+		Route::group(['prefix'=>"client"],function(){
+			Route::get('create','ClientController@create');
+			Route::post('store','ClientController@store');
+			Route::post('delete','ClientController@delete');
+			Route::post('biodata','ClientController@biodata');
+		});
+
 		Route::group(['namespace' => 'Admin'], function(){
 
 			CRUD::resource('service', 'ServiceCrudController');
 			CRUD::resource('material' ,'MaterialCrudController');
-			CRUD::resource('admin', 'AdminCrudController');
-			// CRUD::resource('biodataAdmin','BiodataAdminCrudController');
-			CRUD::resource('technician', 'TechnicianCrudController');
-			CRUD::resource('client', 'ClientCrudController');
-			CRUD::resource('biodata','BiodataCrudController');
+			// CRUD::resource('admin', 'AdminCrudController');
+			// // CRUD::resource('biodataAdmin','BiodataAdminCrudController');
+			// CRUD::resource('technician', 'TechnicianCrudController');
+			// CRUD::resource('client', 'ClientCrudController');
+			// CRUD::resource('biodata','BiodataCrudController');
 
 		});
 	});

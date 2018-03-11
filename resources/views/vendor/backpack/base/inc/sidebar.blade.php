@@ -23,7 +23,7 @@
           <li><a href="{{ backpack_url('admin') }}"><i class="fa fa-tag"></i> <span>Manage Admin</span></a></li>
           <li><a href="{{ backpack_url('technician') }}"><i class="fa fa-tag"></i> <span>Manage Technician</span></a></li>
           <li><a href="{{ backpack_url('client') }}"><i class="fa fa-tag"></i> <span>Manage Client</span></a></li>
-          <li><a href="{{ backpack_url('biodata') }}"><i class="fa fa-tag"></i> <span>Manage Biodata</span></a></li>
+          {{-- <li><a href="{{ backpack_url('biodata') }}"><i class="fa fa-tag"></i> <span>Manage Biodata</span></a></li> --}}
 
         </ul>
       </section>
