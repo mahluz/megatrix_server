@@ -341,4 +341,11 @@ class ApiController extends Controller
         }
     }
 
+    public function getUserBiodata(Request $request){
+        $currentUser = User::with('biodata')
+        ->where('id',$request["user"]["id"])->first();
+
+        return Response::json($currentUser);
+    }
+
 }
