@@ -171,7 +171,7 @@ class ApiController extends Controller
 
         $data["order"] = Order::with('client','client.biodata')
         ->whereHas('client.biodata',function($query) use ($currentUser){
-            $query->where('district',$currentUser["biodata"]["district"]);
+            $query->where('district',$currentUser["biodata"]["province"]);
         })
         ->where('status','requested')
         ->orWhere('status','on process')
