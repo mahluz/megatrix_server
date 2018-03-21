@@ -36,6 +36,7 @@
 						<td>{{$ini->email}}</td>
 						<td>{{$ini->password}}</td>
 						<td>
+							<a href="{{ url('admin/admin/edit/'.$ini->id) }}"><button type="button" class="btn btn-warning">Edit</button></a>
 							<button type="button" class="btn btn-info" onclick="event.preventDefault();document.getElementById('biodata{{$ini->id}}').submit()">Lihat Biodata</button>
 							<form id="biodata{{$ini->id}}" method="post" action="{{url('admin/admin/biodata')}}">
 								<input type="hidden" name="id" value="{{$ini->id}}">

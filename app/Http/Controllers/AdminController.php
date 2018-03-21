@@ -50,6 +50,37 @@ class AdminController extends Controller
 		return redirect('admin/admin');
     }
 
+    public function edit($id){
+    	// dd($id);
+    	$data["admin"] = User::with('biodata')->where('role_id',1)->where('id',$id)->first();
+    	return view('admin/edit',$data);
+    }
+
+    public function update(Request $request){
+    	$db["technician"] = User::where('id',$request["id"])->update([
+			"role_id"=>1,
+			"name"=>$request["name"],
+			"email"=>$request["email"],
+			"password"=>bcrypt($request["password"])
+		]);
+
+		$db["biodata"] = Biodata::where('id',$request["id"])->update([
+			"gender"=>$request["gender"],
+			"cp"=>$request["cp"],
+			"date_of_birth"=>$request["date_of_birth"],
+			"province"=>$request["province"],
+			"regency"=>$request["regency"],
+			"district"=>$request["district"],
+			"village"=>$request["village"],
+			"home_address"=>$request["home_address"],
+			"last_education"=>$request["last_education"],
+			"profession"=>$request["profession"],
+			"skill"=>$request["skill"]
+		]);
+
+		return redirect('admin/admin');
+    }
+
     public function biodata(Request $request){
     	$data["admin"] = User::with('biodata')->where('role_id',1)->where('id',$request["id"])->first();
 

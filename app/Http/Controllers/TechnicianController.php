@@ -47,7 +47,38 @@ class TechnicianController extends Controller
 			"skill"=>$request["skill"]
 		]);
 
-		return redirect('technician/technician');
+		return redirect('admin/technician');
+    }
+
+    public function edit($id){
+    	// dd($id);
+    	$data["technician"] = User::with('biodata')->where('role_id',3)->where('id',$id)->first();
+    	return view('technician/edit',$data);
+    }
+
+    public function update(Request $request){
+    	$db["technician"] = User::where('id',$request["id"])->update([
+			"role_id"=>3,
+			"name"=>$request["name"],
+			"email"=>$request["email"],
+			"password"=>bcrypt($request["password"])
+		]);
+
+		$db["biodata"] = Biodata::where('id',$request["id"])->update([
+			"gender"=>$request["gender"],
+			"cp"=>$request["cp"],
+			"date_of_birth"=>$request["date_of_birth"],
+			"province"=>$request["province"],
+			"regency"=>$request["regency"],
+			"district"=>$request["district"],
+			"village"=>$request["village"],
+			"home_address"=>$request["home_address"],
+			"last_education"=>$request["last_education"],
+			"profession"=>$request["profession"],
+			"skill"=>$request["skill"]
+		]);
+
+		return redirect('admin/technician');
     }
 
     public function biodata(Request $request){

@@ -132,6 +132,8 @@ Route::group(['middleware'=>'userMiddleware:1'],function(){
 		Route::group(['prefix'=>"admin"],function(){
 			Route::get('create','AdminController@create');
 			Route::post('store','AdminController@store');
+			Route::get('edit/{id}','AdminController@edit');
+			Route::post('update','AdminController@update');
 			Route::post('delete','AdminController@delete');
 			Route::post('biodata','AdminController@biodata');
 		});
@@ -140,6 +142,8 @@ Route::group(['middleware'=>'userMiddleware:1'],function(){
 		Route::group(['prefix'=>"technician"],function(){
 			Route::get('create','TechnicianController@create');
 			Route::post('store','TechnicianController@store');
+			Route::get('edit/{id}','TechnicianController@edit');
+			Route::post('update','TechnicianController@update');
 			Route::post('delete','TechnicianController@delete');
 			Route::post('biodata','TechnicianController@biodata');
 		});
@@ -148,6 +152,8 @@ Route::group(['middleware'=>'userMiddleware:1'],function(){
 		Route::group(['prefix'=>"client"],function(){
 			Route::get('create','ClientController@create');
 			Route::post('store','ClientController@store');
+			Route::get('edit/{id}','ClientController@edit');
+			Route::post('update','ClientController@update');
 			Route::post('delete','ClientController@delete');
 			Route::post('biodata','ClientController@biodata');
 		});
