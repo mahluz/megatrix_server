@@ -26,7 +26,7 @@ Route::get('checking',function(){
 			return redirect('admin/dashboard');
 		break;
 		default:
-			return redirect('/');
+			return redirect('admin/logout');
 		break;
 	}
 
