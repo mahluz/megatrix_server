@@ -14,6 +14,7 @@ class CreateOrderMaterialsTable extends Migration
     public function up()
     {
         Schema::create('order_materials', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('order_id')->unsigned();
             $table->integer('material_id')->unsigned();
