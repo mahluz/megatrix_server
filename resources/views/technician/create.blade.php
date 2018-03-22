@@ -19,7 +19,7 @@
 			Formulis Pendaftaran
 		</div>
 		<div class="panel-body">
-			<form class="form" method="post" action="{{url('admin/admin/store')}}">
+			<form class="form" method="post" action="{{url('admin/technician/store')}}">
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
