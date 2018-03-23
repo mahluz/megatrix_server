@@ -62,4 +62,27 @@ class OrderController extends Controller
         // dd($data);
         return view('order.technicianDetail',$data);
     }
+
+    public function finish(Request $request){
+        $db["order_status"] = Order::where('id',$request["order_id"])->first();
+
+        if($db["order_status"]->status == "on process"){
+            $db["technician"] = User::where('id',$db["order_status"]->technician_id)
+                                ->update([
+                                    "status"=>"free"
+                                ]);
+            $db["client"] = User::where('id',$db["order_status"]->client_id)
+                                ->update([
+                                    "status"=>"free"
+                                ]);
+            $db["order"] = Order::where('id',$request["order_id"])
+                        ->update([
+                            "status"=>"complete"
+                        ]);
+            return redirect('admin/order');
+        } else {
+            return abort(404);
+        }
+
+    }
 }

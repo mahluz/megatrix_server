@@ -126,6 +126,7 @@ Route::group(['middleware'=>'userMiddleware:1'],function(){
 			Route::post('getTechnician','OrderController@getTechnician');
 			Route::post('setTechnician','OrderController@setTechnician');
 			Route::post('technicianDetail','OrderController@technicianDetail');
+			Route::post('finish','OrderController@finish');
 		});
 
 		Route::get('admin','AdminController@index');

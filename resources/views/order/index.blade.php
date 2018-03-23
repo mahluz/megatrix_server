@@ -73,6 +73,13 @@
 	        				</td>
 	        				<td>{{ $ini->status }}</td>
 	        				<td>
+	        					@if($ini->status == "on process")
+	        					<button type="button" class="btn btn-primary" onclick="event.preventDefault();document.getElementById('finish{{ $ini->id }}').submit();">Selesaikan</button>
+	        					<form method="post" id="finish{{ $ini->id }}" action="{{ url('admin/order/finish') }}">
+	        						<input type="hidden" name="order_id" value="{{ $ini->id }}">
+	        						{{ csrf_field() }}
+	        					</form>
+	        					@endif
 	        					<button type="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('delete{{ $ini->id }}').submit();">Tolak</button>
 	        					<form method="post" id="delete{{ $ini->id }}" action="{{ url('admin/order/delete') }}">
 	        						<input type="hidden" name="id" value="{{ $ini->id }}">
