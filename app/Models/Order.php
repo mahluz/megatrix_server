@@ -18,8 +18,8 @@ class Order extends Model
     //protected $table = 'orders';
     //protected $primaryKey = 'id';
     // public $timestamps = false;
-    // protected $guarded = ['id'];
-    protected $fillable = ["service_id","client_id","technician_id","status"];
+    protected $guarded = ['id'];
+    // protected $fillable = ["service_id","client_id","technician_id","status"];
     // protected $hidden = [];
     // protected $dates = [];
 
