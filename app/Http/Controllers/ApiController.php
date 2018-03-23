@@ -116,7 +116,12 @@ class ApiController extends Controller
         ]);
         $data["order"] = Order::create([
             "service_id"=>$request["order"]["service"],
-            "client_id"=>$request["user"]["id"]
+            "client_id"=>$request["user"]["id"],
+            "province"=>$request["order"]["province"],
+            "regency"=>$request["order"]["regency"],
+            "district"=>$request["order"]["district"],
+            "village"=>$request["order"]["village"],
+            "home_address"=>$request["order"]["address"]
         ]);
         return Response::json([
             "result"=>$data

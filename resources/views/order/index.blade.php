@@ -46,11 +46,11 @@
 	        				<td>{{ $ini->client->email }}</td>
 	        				<td>{{ $ini->client->biodata->date_of_birth }}</td>
 	        				<td>{{ $ini->client->biodata->gender }}</td>
-	        				<td>{{ $ini->client->biodata->province }}</td>
-	        				<td>{{ $ini->client->biodata->regency }}</td>
-	        				<td>{{ $ini->client->biodata->district }}</td>
-	        				<td>{{ $ini->client->biodata->village }}</td>
-	        				<td>{{ $ini->client->biodata->home_address }}</td>
+	        				<td>{{ $ini->province }}</td>
+	        				<td>{{ $ini->regency }}</td>
+	        				<td>{{ $ini->district }}</td>
+	        				<td>{{ $ini->village }}</td>
+	        				<td>{{ $ini->home_address }}</td>
 	        				<td>{{ $ini->client->biodata->cp }}</td>
 	        				<td>{{ $ini->service->service }}</td>
 	        				<td>

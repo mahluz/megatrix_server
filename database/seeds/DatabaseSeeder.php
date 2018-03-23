@@ -149,6 +149,11 @@ class DatabaseSeeder extends Seeder
             "service_id"=>3,
             "client_id"=>2,
             "technician_id"=>1,
+            "province"=>"JAWA TENGAH",
+            "regency"=>"KABUPATEN SEMARANG",
+            "district"=>"GUNUNGPATI",
+            "village"=>"KALISEGORO",
+            "home_address"=>"Office Griya Sekar Gading Blok Q-9 Sekaran, Gunungpati Kota Semarang",
             "status"=>"requested"
         ]);
 

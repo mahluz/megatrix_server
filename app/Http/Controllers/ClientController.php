@@ -47,7 +47,7 @@ class ClientController extends Controller
 			"skill"=>$request["skill"]
 		]);
 
-		return redirect('client/client');
+		return redirect('admin/client');
     }
 
     public function edit($id){
