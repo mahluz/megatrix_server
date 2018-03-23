@@ -175,9 +175,10 @@ class ApiController extends Controller
         ->where('id',$request["user"]["id"])->first();
 
         $data["order"] = Order::with('client','client.biodata')
-        ->whereHas('client.biodata',function($query) use ($currentUser){
-            $query->where('province',$currentUser["biodata"]["province"]);
-        })
+        // ->whereHas('client.biodata',function($query) use ($currentUser){
+        //     $query->where('province',$currentUser["biodata"]["province"]);
+        // })
+        ->where('province',$currentUser["biodata"]["province"])
         ->where('status','requested')
         ->orWhere('status','on process')
         ->get();
@@ -331,7 +332,6 @@ class ApiController extends Controller
 
     public function getCurrentJobTechnician(Request $request){
         $db["technician"] = User::where('id',$request["technician"]["id"])->first();
-
         if($db["technician"]->status == "on work"){
             $db["order"] = Order::where('technician_id',$db["technician"]->id)
                                     ->where('status','on process')
@@ -339,6 +339,7 @@ class ApiController extends Controller
             return Response::json([
                 "result"=>$db
             ]);
+            $db["client"] = User::where('id',$db["order"]->client_id)->first();
         } else {
             return Response::json([
                 "result"=>"gagal"
