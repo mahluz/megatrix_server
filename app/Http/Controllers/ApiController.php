@@ -336,10 +336,10 @@ class ApiController extends Controller
             $db["order"] = Order::where('technician_id',$db["technician"]->id)
                                     ->where('status','on process')
                                     ->first();
+            $db["client"] = User::where('id',$db["order"]->client_id)->first();
             return Response::json([
                 "result"=>$db
             ]);
-            $db["client"] = User::where('id',$db["order"]->client_id)->first();
         } else {
             return Response::json([
                 "result"=>"gagal"
