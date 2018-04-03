@@ -290,10 +290,7 @@ class ApiController extends Controller
             "regency"=>$request["credential"]["regency"],
             "district"=>$request["credential"]["district"],
             "village"=>$request["credential"]["village"],
-            "home_address"=>$request["credential"]["home_address"],
-            "last_education"=>$request["credential"]["last_education"],
-            "profession"=>$request["credential"]["profession"],
-            "skill"=>$request["credential"]["skill"]
+            "home_address"=>$request["credential"]["home_address"]
         ]);
 
         return Response::json([
