@@ -274,6 +274,20 @@ class ApiController extends Controller
 
     public function registerClient(Request $request){
 
+        if(!$request["credential"]["name"]
+        && !$request["credential"]["email"]
+        && !$request["credential"]["password"]
+        && !$request["credential"]["gender"]
+        && !$request["credential"]["cp"]
+        && !$request["credential"]["date_of_birth"]
+        && !$request["credential"]["province"]
+        && !$request["credential"]["regency"]
+        && !$request["credential"]["district"]
+        && !$request["credential"]["village"]
+        && !$request["credential"]["home_address"]){
+            return abort(404);
+        }
+
         $db["client"] = User::create([
             "role_id"=>2,
             "name"=>$request["credential"]["name"],
@@ -281,33 +295,17 @@ class ApiController extends Controller
             "password"=>bcrypt($request["credential"]["password"])
         ]);
 
-        if($db["client"] == true){
-            $db["client_biodata"] = Biodata::create([
-                "user_id"=>$db["client"]->id,
-                "gender"=>$request["credential"]["gender"],
-                "cp"=>$request["credential"]["cp"],
-                "date_of_birth"=>$request["credential"]["date_of_birth"],
-                "province"=>$request["credential"]["province"],
-                "regency"=>$request["credential"]["regency"],
-                "district"=>$request["credential"]["district"],
-                "village"=>$request["credential"]["village"],
-                "home_address"=>$request["credential"]["home_address"]
-            ]);
-
-            if ($db["client_biodata"] == true) {
-                return Response::json([
-                    "result"=>$db
-                ]);
-            } else {
-                $removeDB["client"] = User::where('id',$db["client"]->id)->delete();
-
-                return abort(404);
-            }
-
-
-        } else {
-            return abort(404);
-        }
+        $db["client_biodata"] = Biodata::create([
+            "user_id"=>$db["client"]->id,
+            "gender"=>$request["credential"]["gender"],
+            "cp"=>$request["credential"]["cp"],
+            "date_of_birth"=>$request["credential"]["date_of_birth"],
+            "province"=>$request["credential"]["province"],
+            "regency"=>$request["credential"]["regency"],
+            "district"=>$request["credential"]["district"],
+            "village"=>$request["credential"]["village"],
+            "home_address"=>$request["credential"]["home_address"]
+        ]);
 
     }
 
