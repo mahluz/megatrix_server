@@ -274,17 +274,19 @@ class ApiController extends Controller
 
     public function registerClient(Request $request){
 
-        if(!$request["credential"]["name"]
-        && !$request["credential"]["email"]
-        && !$request["credential"]["password"]
-        && !$request["credential"]["gender"]
-        && !$request["credential"]["cp"]
-        && !$request["credential"]["date_of_birth"]
-        && !$request["credential"]["province"]
-        && !$request["credential"]["regency"]
-        && !$request["credential"]["district"]
-        && !$request["credential"]["village"]
-        && !$request["credential"]["home_address"]){
+        if(!isset(
+        $request["credential"]["name"]
+        ,$request["credential"]["email"]
+        ,$request["credential"]["password"]
+        ,$request["credential"]["gender"]
+        ,$request["credential"]["cp"]
+        ,$request["credential"]["date_of_birth"]
+        ,$request["credential"]["province"]
+        ,$request["credential"]["regency"]
+        ,$request["credential"]["district"]
+        ,$request["credential"]["village"]
+        ,$request["credential"]["home_address")
+        ){
             return abort(404);
         }
 
