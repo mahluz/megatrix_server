@@ -307,6 +307,10 @@ class ApiController extends Controller
             "home_address"=>$request["credential"]["home_address"]
         ]);
 
+        return Response::json([
+            "result"=>$db
+        ]);
+
     }
 
     public function registerTechnician(Request $request){
