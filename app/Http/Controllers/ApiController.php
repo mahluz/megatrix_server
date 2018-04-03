@@ -293,16 +293,18 @@ class ApiController extends Controller
                 "village"=>$request["credential"]["village"],
                 "home_address"=>$request["credential"]["home_address"]
             ]);
-            if ($db["client_biodata"] == false) {
+
+            if ($db["client_biodata"] == true) {
+                return Response::json([
+                    "result"=>$db
+                ]);
+            } else {
                 $removeDB["client"] = User::where('id',$db["client"]->id)->delete();
 
                 return abort(404);
             }
 
-            return Response::json([
-                "result"=>$db
-            ]);
-            
+
         } else {
             return abort(404);
         }
