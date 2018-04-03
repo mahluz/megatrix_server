@@ -281,21 +281,32 @@ class ApiController extends Controller
             "password"=>bcrypt($request["credential"]["password"])
         ]);
 
-        $db["client_biodata"] = Biodata::create([
-            "user_id"=>$db["client"]->id,
-            "gender"=>$request["credential"]["gender"],
-            "cp"=>$request["credential"]["cp"],
-            "date_of_birth"=>$request["credential"]["date_of_birth"],
-            "province"=>$request["credential"]["province"],
-            "regency"=>$request["credential"]["regency"],
-            "district"=>$request["credential"]["district"],
-            "village"=>$request["credential"]["village"],
-            "home_address"=>$request["credential"]["home_address"]
-        ]);
+        if($db["client"] == true){
+            $db["client_biodata"] = Biodata::create([
+                "user_id"=>$db["client"]->id,
+                "gender"=>$request["credential"]["gender"],
+                "cp"=>$request["credential"]["cp"],
+                "date_of_birth"=>$request["credential"]["date_of_birth"],
+                "province"=>$request["credential"]["province"],
+                "regency"=>$request["credential"]["regency"],
+                "district"=>$request["credential"]["district"],
+                "village"=>$request["credential"]["village"],
+                "home_address"=>$request["credential"]["home_address"]
+            ]);
+            if ($db["client_biodata"] == false) {
+                $removeDB["client"] = User::where('id',$db["client"]->id)->delete();
 
-        return Response::json([
-            "result"=>$db
-        ]);
+                return abort(404);
+            }
+
+            return Response::json([
+                "result"=>$db
+            ]);
+            
+        } else {
+            return abort(404);
+        }
+
     }
 
     public function registerTechnician(Request $request){
