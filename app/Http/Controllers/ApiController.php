@@ -285,7 +285,7 @@ class ApiController extends Controller
         ,$request["credential"]["regency"]
         ,$request["credential"]["district"]
         ,$request["credential"]["village"]
-        ,$request["credential"]["home_address")
+        ,$request["credential"]["home_address"])
         ){
             return abort(404);
         }
