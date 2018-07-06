@@ -202,7 +202,11 @@ class ApiController extends Controller
         if($db["status"]["status"] == "free"){
 
             $order = Order::find($request["order"]);
-            if($order->technician_id == 1){
+            if($order->technician_id != 1){
+                return Response::json([
+                    "result"=>"error"
+                ]);        
+            } else {
                 $db["order"] = Order::where('id',$request["order"])
                 ->update([
                     "technician_id"=>$request["user"]["id"],
@@ -216,11 +220,7 @@ class ApiController extends Controller
 
                 return Response::json([
                     "result"=>$db
-                ]);                
-            } else {
-                return Response::json([
-                    "result"=>"error"
-                ]);
+                ]); 
             }
 
         } else {
