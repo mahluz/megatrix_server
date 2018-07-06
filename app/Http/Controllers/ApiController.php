@@ -201,7 +201,7 @@ class ApiController extends Controller
 
         if($db["status"]["status"] == "free"){
 
-            $order = Order::find($request["order_id"]);
+            $order = Order::find($request["order"]);
             if($order->technician_id == 1){
                 $db["order"] = Order::where('id',$request["order"])
                 ->update([
