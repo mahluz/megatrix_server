@@ -200,20 +200,29 @@ class ApiController extends Controller
         $db["status"] = User::where('id',$request["user"]["id"])->first();
 
         if($db["status"]["status"] == "free"){
-            $db["order"] = Order::where('id',$request["order"])
-            ->update([
-                "technician_id"=>$request["user"]["id"],
-                "status"=>"on process"
-            ]); 
 
-            $db["technician"] = User::where('id',$request["user"]["id"])
-            ->update([
-                "status"=>"on work"
-            ]);
+            $order = Order::find($request["order_id"]);
+            if($order->technician_id == 1){
+                $db["order"] = Order::where('id',$request["order"])
+                ->update([
+                    "technician_id"=>$request["user"]["id"],
+                    "status"=>"on process"
+                ]); 
 
-            return Response::json([
-                "result"=>$db
-            ]);
+                $db["technician"] = User::where('id',$request["user"]["id"])
+                ->update([
+                    "status"=>"on work"
+                ]);
+
+                return Response::json([
+                    "result"=>$db
+                ]);                
+            } else {
+                return Response::json([
+                    "result"=>"error"
+                ]);
+            }
+
         } else {
             return Response::json([
                 "result"=>"error"
