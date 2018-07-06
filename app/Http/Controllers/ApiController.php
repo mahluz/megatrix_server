@@ -20,6 +20,9 @@ use App\Models\Village;
 
 class ApiController extends Controller
 {
+
+    private $onOrderProces = false;
+
     public function __construct(){
     	$this->user = new User;
     }
@@ -201,26 +204,30 @@ class ApiController extends Controller
 
         if($db["status"]["status"] == "free"){
 
-            $order = Order::find($request["order"]);
-            if($order->technician_id != 1){
-                return Response::json([
-                    "result"=>"error"
-                ]);        
-            } else {
-                $db["order"] = Order::where('id',$request["order"])
-                ->update([
-                    "technician_id"=>$request["user"]["id"],
-                    "status"=>"on process"
-                ]); 
+            if($this->onOrderProces == false){
+                $this->onOrderProces = true;
+                $order = Order::find($request["order"]);
+                if($order->technician_id == 1){
+                    $db["order"] = Order::where('id',$request["order"])
+                    ->update([
+                        "technician_id"=>$request["user"]["id"],
+                        "status"=>"on process"
+                    ]); 
 
-                $db["technician"] = User::where('id',$request["user"]["id"])
-                ->update([
-                    "status"=>"on work"
-                ]);
+                    $db["technician"] = User::where('id',$request["user"]["id"])
+                    ->update([
+                        "status"=>"on work"
+                    ]);
 
-                return Response::json([
-                    "result"=>$db
-                ]); 
+                    return Response::json([
+                        "result"=>$db
+                    ]);
+                    $this->onOrderProces = false;                
+                } else {
+                    return Response::json([
+                        "result"=>"error"
+                    ]);
+                }
             }
 
         } else {
